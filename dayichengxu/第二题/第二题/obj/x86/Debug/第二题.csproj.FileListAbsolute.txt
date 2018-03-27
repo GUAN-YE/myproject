@@ -1,0 +1,12 @@
+F:\的说法是打发打发\第二题\第二题\bin\Debug\第二题.exe
+F:\的说法是打发打发\第二题\第二题\bin\Debug\第二题.pdb
+F:\的说法是打发打发\第二题\第二题\obj\x86\Debug\第二题.Form1.resources
+F:\的说法是打发打发\第二题\第二题\obj\x86\Debug\第二题.Properties.Resources.resources
+F:\的说法是打发打发\第二题\第二题\obj\x86\Debug\第二题.csproj.GenerateResource.Cache
+F:\的说法是打发打发\第二题\第二题\obj\x86\Debug\第二题.exe
+F:\的说法是打发打发\第二题\第二题\obj\x86\Debug\第二题.pdb
+F:\的说法是打发打发\第二题\第二题\obj\x86\Debug\第二题.csprojResolveAssemblyReference.cache
+F:\第二题\第二题\obj\x86\Debug\第二题.exe
+F:\第二题\第二题\obj\x86\Debug\第二题.pdb
+F:\大一程序\第二题\第二题\obj\x86\Debug\第二题.exe
+F:\大一程序\第二题\第二题\obj\x86\Debug\第二题.pdb

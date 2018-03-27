@@ -1,0 +1,79 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+        <style type ="text/css">
+
+
+            .tou
+            {
+                width:100%;
+                height:100px;
+             }
+             .wei
+             {
+                 width:100%;
+                 height:30px;
+                 }
+                 .zi
+                 {
+                     margin-left:50px;
+                     margin-top:30px;
+                     }
+                     .w
+                     {
+                         margin-top:5px;
+                         }
+                         .zhong1
+                         {                height: 38px;
+                width: 925px;
+                  }
+                .zhong2
+                {
+                    }
+              
+    </style>
+    </asp:ContentPlaceHolder>
+</head>
+<body style="margin-bottom: 17px">
+    <form id="form1" runat="server">
+    <div class="tou"style="background-image: url('/课题/tooopen_sy_130087834413.jpg')">
+         <div class ="zi" align="center" style="font-size: 50px; color: #FFFF00; background-image: url('/2017课题/tooopen_sy_130087834413.jpg'); height: 66px;" 
+             >良品良品手机购</div>
+        </div>
+
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            <div class="zhong1"align="center" style="left: 20px">
+            <asp:Label ID="Label1" runat="server" Text="手机:"></asp:Label>
+            &nbsp;
+            <asp:DropDownList ID="DropDownList1" runat="server">
+            </asp:DropDownList>
+            &nbsp;
+            <asp:DropDownList ID="DropDownList2" runat="server">
+            </asp:DropDownList>
+            &nbsp;&nbsp;
+            <asp:Button ID="Button1" runat="server" Text="查询" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="Button2" runat="server" Text="Button" />
+&nbsp;&nbsp;
+                <asp:Button ID="Button3" runat="server" Text="Button" />
+        </div>
+        <div class="zhong2">
+        </div>
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="wei" 
+        style="background-image: url('/课题/tooopen_sy_130087834413.jpg')">
+        <div class="w"align="center" 
+            style="font-size: 20px; color: #FFFF00; background-image: url('/2017课题/tooopen_sy_130087834413.jpg');">
+            河南省郑州市中原区中原中路146号 
+ form>
+</body>
+
+</html>
