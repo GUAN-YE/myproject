@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+        <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			
+		</script>
+		<meta charset="{CHARSET}">
+		<title>后台</title>
+	</head>
+	<body>
+        <div>
+    <form id='forms' enctype="multipart/form-data">
+        
+    <select name="jiaocai" id='jiaocai'>
+    <option value="出版社">出版社</option>
+    <option value="green">green</option>
+    <option value="blue">blue</option>
+    <option value="black">black</option>
+  </select>
+  <select name="banben" id ='banben'>
+        <option value="版本">版本</option>
+        <option value="333">333</option>
+        <option value="444">444</option>
+        <option value="555">555</option>
+    </select>
+      <select name="ce" id = 'ce'>
+            <option value="apple">apple</option>
+            <option value="banana">banana</option>
+            <option value="orange">orange</option>
+            <option value="ping">ping</option>
+        </select>
+
+    
+    
+    </form>
+    
+    
+</div>
+<button type="submit" class="btn btn-info" id ='sub'>搜索</button>
+<button type="submit" class="btn btn-info" id ='sub'>添加课程</button>
+<div>
+    <table class="table table-bordered">
+        <caption>边框表格布局</caption>
+        <thead>
+            <tr>
+                <th>{{name}}</th>
+            
+                <th>{{bb}}</th>
+                <th>邮编</th>
+                <th>邮编</th>
+             
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tanmay</td>
+                <td>Bangalore</td>
+                <td>560001</td>
+            </tr>
+            <tr>
+                <td>Sachin</td>
+                <td>Mumbai</td>
+                <td>400003</td>
+            </tr>
+            <tr>
+                <td>Uma</td>
+                <td>Pune</td>
+                <td>411027</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+	</body>
+</html>
+
+
+
+<script>
+    // var maindata='';
+    // function createList(page) {
+	// 		$("#userTable").empty()
+	// 		for(i = 0; i < mainData.data.length; i++) {
+	// 			if(i >= (page - 1) * 10 && i <= page * 10 - 1) {
+	// 				mydata = mainData.data[i]
+	// 				var NO = i + 1;
+	// 				var userid = mydata["userid"];
+	// 				var username = mydata["username"];
+	// 				var pwd = mydata["pwd"];
+	// 				var phone = mydata["phone"];
+	// 				var wxid = mydata["wxid"];
+	// 				var headimg = mydata["headimg"];
+	// 				var acountmoney = mydata["acountmoney"];
+	// 				var power = mydata["power"];
+	// 				var activecode = mydata["activecode"];
+	// 				var ele = '<tr class="mytr" NO="' + NO + '" userid = "' + userid + '" username = "' + username + '" pwd = "' + pwd + '" phone = "' + phone + '" wxid = "' + wxid + '" acountmoney = "' + acountmoney + '" headimg="' + headimg + '"  power = "' + power + '" activecode = "' + activecode + '"><td class="info ele"><input class="checkbox-one" name="checkbox-one" type="checkbox"/></td><td class="info ele">' + NO + '</td><td class="info ele">' + userid + '</td><td class="info ele">' + username + '</td><td class="info ele">' + pwd + '</td><td class="info ele">' + phone + '</td><td class="info ele">' + wxid + '</td><td class="info ele"><img height="40px" width="40px" src="http://localhost:8000/static/myfile/' + headimg + '" alt=""></td><td class="info ele">' + acountmoney + '</td><td class="info ele">' + power + '</td><td class="info ele">' + activecode + '</td><td class="info ele"><button class="btn btn-default edit btn-primary" data-toggle="modal" data-target="#editModal' + userid + '">编辑</button>     <button class="btn btn-default delete">删除</button></td></tr>'
+	// 				$(".myModal").empty();
+
+	// 				$("#userTable").append(ele);
+	// 			}
+
+	// 		}
+
+	// 		addEvent();
+	// 	}
+
+    
+    $('#sub').click(function(){
+        Jiaocai=$('#jiaocai').val()
+        Banben=$('#banben').val()
+        if (Jiaocai=="教材"){
+            layer.msg("请选择教材！")
+        }
+        if (Banben=="版本"){
+            alert('请选择版本！')
+        }
+        find();
+
+
+    })
+find()
+    function find(){
+        $.ajax({
+                url: '/houtai',
+                type: 'POST',
+                //data: {'hostname': $('#host').val(), 'ip': $('#ip').val(), 'port': $('#port').val(), 'b_id': $('#sel').val()},
+                data: $('#forms').serialize(), 
+                dataType: 'json', // 同上面那一句
+                success: function(data) {
+					// if(data.data != "") {
+					// 	layer.msg("查找成功")
+					// 	mainData = data
+
+						// $('.mytr').remove();
+						// document.getElementById("exampleUsername").value = "";
+						// document.getElementById("exampleInputPhoneNumber").value = "";
+						// createList(1);
+						// var totalPages = mainData.data.length / 10 + 1;
+						// var currentPageOption = {
+						// 	totalPages: totalPages,
+						// 	first: "首页",
+						// 	last: "尾页",
+						// 	prev: '上一页',
+						// 	next: '下一页',
+						// 	startPage: 1,
+						// 	visiblePages: totalPages > 5 ? 5 : totalPages ,
+						// 	version: '1.1',
+						// 	onPageClick: function(event, page) {
+						// 		createList(page);
+						// 	}
+						// };
+						// $('#visible-pages-example').twbsPagination('destroy');
+						// $('#visible-pages-example').twbsPagination($.extend({}, defaultPageOptioins, currentPageOption));
+						// defaultPageOptioins = currentPageOption;
+					}
+					else {
+						layer.msg("没有查找到数据")
+					}
+
+				},
+				error: function(data) {
+					console.log("chucuole ");
+				}
+                    
+                    
+                  
+            
+                   
+
+    
+        })
+    }
+    
+        // $('#sub').click(function(){
+        //     $.ajax({
+        //         url: '/houtai',
+        //         type: 'POST',
+        //         //data: {'hostname': $('#host').val(), 'ip': $('#ip').val(), 'port': $('#port').val(), 'b_id': $('#sel').val()},
+        //         data: $('#forms').serialize(), 
+        //         dataType: 'json', // 同上面那一句
+        //         success: function(data){
+                    
+                    
+        //             if (data.cc=="请选择出版社或版本")
+        //             {
+        //                 alert("请选择出版社或版本")
+        //             }
+        //             else{
+        //                 alert('正在查找........')
+        //             }
+            
+        //             location.reload()
+
+                    
+
+             
+                    
+        //             // if(data){
+        //             //     // location.reload(); // JS刷新当前页面
+        //             //     console.log('...........................')
+        //             // }else{
+        //             //     $('#erro_msg').text(obj.error);
+        //             // }
+        //         }
+        //     })
+        // });
+
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我是{{dd}}界面</title>
+</head>
+<body>
+<li>{{jj}}</li>
+{{USER_DICT.keys}}
+
+{% for i in USER_DICT.keys %}
+<li>{{i}}</li>
+{% endfor %}
+{% for k in USER_DICT.values %}
+<li>{{k}}</li>
+{% endfor %}
+{% for m,b in USER_DICT.items %}
+<li>{{m}}-{{b}}</li>
+{% endfor %}
+<form action="{% url 'home'%}",method='POST'>
+    <input type='submit'>
+</form>
+</body>
+</html>
