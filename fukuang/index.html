@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<title>jQuery带时间日期日历插件 - 站长素材</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+		<style media="screen">
+			body {
+				padding: 100px;
+				font-size: 14px;
+			}
+			
+			h1 {
+				font-size: 26px;
+			}
+			
+			p {
+				font-size: 14px;
+				margin-top: 10px;
+			}
+			
+			pre {
+				background: #eee;
+				border: 1px solid #ddd;
+				border-left: 4px solid #f60;
+				padding: 15px;
+				margin-top: 15px;
+			}
+			
+			h2 {
+				font-size: 20px;
+				margin-top: 20px;
+			}
+			
+			.case {
+				margin-top: 15px
+			}
+			
+			.ECalendar {
+				width: 400px;
+				height: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button type="button" class="btn btn-primary btn-lg dianji" data-toggle="modal" data-target="#myModal">  
+    Launch demo modal  
+</button>
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">  
+                    <!--<span aria-hidden="true">×</span>-->
+						<!--</button>-->
+						<h4 class="modal-title" id="myModalLabel">添加</h4>
+					</div>
+					<div class="modal-body">
+						<form id='forms' enctype="multipart/form-data">
+							教材：
+
+							<select name="Jiaocai" id='jiaocai'>
+								<option>出版社</option>
+								<option value="1">1</option>
+								<option value="blue">blue</option>
+								<option value="black">black</option>
+							</select>
+							<select name="Banben" id='banben'>
+								<option>版本</option>
+								<option value="333">86版</option>
+								<option value="444">93版</option>
+								<option value="555">98版</option>
+							</select>
+							<select name="ce" id='ce'>
+								<option value="apple">上册</option>
+								<option value="banana">下册</option>
+							</select>
+							<div class="case">
+								<div class="calendarWarp" style="">
+									<input type="text" name="date" class='ECalendar' id="ECalendar_case3" value="2017-3-1 15:32" />
+								</div>
+								<div class="callback">
+									您选择的时间是： <span></span>
+								</div>
+							</div>
+							<div class="case">
+								<div class="calendarWarp" style="">
+									<input type="text" name="date" class='ECalendar' id="ECalendar_case4" value="2017-3-1 15:32" />
+								</div>
+								<div class="callback1">
+									您选择的时间是： <span></span>
+								</div>
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save</button> 
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/Ecalendar.jquery.min.js"></script>
+		
+		
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">
+			$('.dianji').click(function(){
+				console.log('----------')
+				
+					$("#ECalendar_case3").ECalendar({
+						type: "time",
+						stamp: false,
+						skin: 5,
+						format: "yyyy年mm月dd日 hh时ii分",
+						callback: function(v, e) {
+							$(".callback span").html(v)
+						}
+					});
+					$("#ECalendar_case4").ECalendar({
+						type: "time",
+						stamp: false,
+						skin: 5,
+						format: "yyyy年mm月dd日 hh时ii分",
+						callback: function(v, e) {
+							$(".callback1 span").html(v)
+						}
+					});
+				
+				
+			})
+			
+		</script>
