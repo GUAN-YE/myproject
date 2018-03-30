@@ -5,15 +5,18 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<title>jQuery带时间日期日历插件 - 站长素材</title>
+		<title>虚浮框</title>
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+		<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
+		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+		<link rel="stylesheet" type="text/css" href="css/build.css">
 		<style media="screen">
-			body {
+			/*body {
 				padding: 100px;
 				font-size: 14px;
-			}
+			}*/
 			
 			h1 {
 				font-size: 26px;
@@ -41,9 +44,60 @@
 				margin-top: 15px
 			}
 			
-			.ECalendar {
+			textarea {
+				margin-right: 8px;
+			}
+			/*.ECalendar {
 				width: 400px;
 				height: 30px;
+			}*/
+			
+			#text1,
+			#text2,
+			#text3 {
+				float: left;
+			}
+			
+			.rili1,
+			.rili2,
+			.rili4,
+			.rili5 {
+				float: left;
+				margin-right: 10px;
+				
+			}
+			#ECalendar_case6,#ECalendar_case5{
+				height: 30px;
+			}
+			
+			.rili4{
+				margin-top: 15px;
+			}
+			.rili5{
+				margin-top: 20px;
+			}
+			
+			.modal-body {
+				margin-top: 17px;
+			}
+			
+			#jiaocai,
+			#banben,
+			#ce {
+				float: left;
+				
+			}
+			
+			#jiaocai1,
+			#xiala {
+				float: left;
+			}
+			.qingchu{
+				height: 30px;
+				width: 60px;
+			}
+			.ww{
+				margin-right: 10px;
 			}
 		</style>
 	</head>
@@ -57,91 +111,382 @@
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">  
-                    <!--<span aria-hidden="true">×</span>-->
-						<!--</button>-->
+
 						<h4 class="modal-title" id="myModalLabel">添加</h4>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body mouseleave"  style="height: 150px; background-color: #CCCCCC;">
 						<form id='forms' enctype="multipart/form-data">
-							教材：
+							<div id="" style="width: auto;height: 40px;">
 
-							<select name="Jiaocai" id='jiaocai'>
-								<option>出版社</option>
-								<option value="1">1</option>
-								<option value="blue">blue</option>
-								<option value="black">black</option>
-							</select>
-							<select name="Banben" id='banben'>
-								<option>版本</option>
-								<option value="333">86版</option>
-								<option value="444">93版</option>
-								<option value="555">98版</option>
-							</select>
-							<select name="ce" id='ce'>
-								<option value="apple">上册</option>
-								<option value="banana">下册</option>
-							</select>
-							<div class="case">
-								<div class="calendarWarp" style="">
-									<input type="text" name="date" class='ECalendar' id="ECalendar_case3" value="2017-3-1 15:32" />
+								<div id="jiaocai1">
+									<strong class="ww">选择教材</strong>
 								</div>
-								<div class="callback">
-									您选择的时间是： <span></span>
+
+								<div id="xiala">
+
+									<select name="Jiaocai" id='jiaocai'>
+										<option>出版社</option>
+										<option value="1">1</option>
+										<option value="blue">blue</option>
+										<option value="black">black</option>
+									</select>
+									<select name="Banben" id='banben'>
+										<option>版本</option>
+										<option value="333">86版</option>
+										<option value="444">93版</option>
+										<option value="555">98版</option>
+									</select>
+									<select name="ce" id='ce'>
+										<option value="apple">上册</option>
+										<option value="banana">下册</option>
+									</select>
+
 								</div>
-							</div>
-							<div class="case">
-								<div class="calendarWarp" style="">
-									<input type="text" name="date" class='ECalendar' id="ECalendar_case4" value="2017-3-1 15:32" />
-								</div>
-								<div class="callback1">
-									您选择的时间是： <span></span>
-								</div>
+
 							</div>
 						</form>
+						<div id="">
+
+							<div id="kechengname">
+								<div id="">
+									<strong class="ww">课程名称  </strong>
+									<input type="text"name="mingcheng" id="" value="" />
+								</div>
+
+							</div>
+							<div id="rili3">
+
+								<div class="case rili1">
+									<strong class="ww">开课时间  </strong>
+									<div class="calendarWarp" style="">
+										<input type="text" name="date" class='ECalendar' id="ECalendar_case6" value="请选择日期" />
+									</div>
+
+								</div>
+								<p class="rili5">至</p>
+								<div class="case rili2">
+									<div class="calendarWarp" style="">
+										<input type="text" name="date1" class='ECalendar' id="ECalendar_case5" value="请选择日期"  />
+									</div>
+
+								</div>
+								<div class="rili4">
+									<button type="button" class="btn btn-primary qingchu">清除</button>
+								</div>
+							</div>
+						</div>
 
 					</div>
+
+					<div class="modal-body" style="background-color: #CCCCCC;height: 180px;width: auto;">
+
+						<div class="checkbox">
+							<input id="checkbox1" class="styled" type="checkbox">
+							<label for="checkbox1">
+		                            <strong>一年级</strong>
+		                        </label>
+
+						</div>
+						<div class="yinianji" style="background-color: #CCCCCC;">
+
+							<div id="text1">
+								<div id="">
+									<strong>知识点：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text2">
+								<div id="">
+									<strong>高频错题：</strong>
+								</div>
+
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text3">
+								<div id="">
+									<strong>每周竞技：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="modal-body" style="background-color: #CCCCCC;height: 180px;width: auto;">
+
+						<div class="checkbox">
+							<input id="checkbox2" class="styled" type="checkbox">
+							<label for="checkbox2">
+		                            <strong>二年级</strong>
+		                        </label>
+
+						</div>
+						<div class="yinianji" style="background-color: #CCCCCC;">
+
+							<div id="text1">
+								<div id="">
+									<strong>知识点：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text2">
+								<div id="">
+									<strong>高频错题：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text3">
+								<div id="">
+									<strong>每周竞技：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-body" style="background-color: #CCCCCC;height: 180px;width: auto;">
+
+						<div class="checkbox">
+							<input id="checkbox3" class="styled" type="checkbox">
+							<label for="checkbox3">
+		                            <strong>三年级</strong>
+		                        </label>
+
+						</div>
+						<div class="yinianji" style="background-color: #CCCCCC;">
+
+							<div id="text1">
+								<div id="">
+									<strong>知识点：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text2">
+								<div id="">
+									<strong>高频错题：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text3">
+								<div id="">
+									<strong>每周竞技：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-body" style="background-color: #CCCCCC;height: 180px;width: auto;">
+
+						<div class="checkbox">
+							<input id="checkbox4" class="styled" type="checkbox">
+							<label for="checkbox4">
+		                            <strong>四年级</strong>
+		                        </label>
+
+						</div>
+						<div class="yinianji" style="background-color: #CCCCCC;">
+
+							<div id="text1">
+								<div id="">
+									<strong>知识点：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text2">
+								<div id="">
+									<strong>高频错题：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text3">
+								<div id="">
+									<strong>每周竞技：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-body" style="background-color: #CCCCCC;height: 180px;width: auto;">
+
+						<div class="checkbox">
+							<input id="checkbox5" class="styled" type="checkbox">
+							<label for="checkbox5">
+		                            <strong>五年级</strong>
+		                        </label>
+
+						</div>
+						<div class="yinianji" style="background-color: #CCCCCC;">
+
+							<div id="text1">
+								<div id="">
+									<strong>知识点：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text2">
+								<div id="">
+									<strong>高频错题：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text3">
+								<div id="">
+									<strong>每周竞技：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="modal-body" style="background-color: #CCCCCC;height: 180px;width: auto;">
+
+						<div class="checkbox">
+							<input id="checkbox6" class="styled" type="checkbox">
+							<label for="checkbox6">
+		                            <strong>六年级</strong>
+		                        </label>
+
+						</div>
+						<div class="yinianji" style="background-color: #CCCCCC;">
+
+							<div id="text1">
+								<div id="">
+									<strong>知识点：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text2">
+								<div id="">
+									<strong>高频错题：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+							<div id="text3">
+								<div id="">
+									<strong>每周竞技：</strong>
+								</div>
+								<textarea name="a" style="width:180px;height:80px;">这里写内容</textarea>
+							</div>
+
+						</div>
+
+					</div>
+
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save</button> 
+						<button type="button" class="btn btn-primary tianjia">添加</button>
+						
 
 					</div>
+					
+
 				</div>
+
 			</div>
+
+		</div>
 		</div>
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/Ecalendar.jquery.min.js"></script>
-		
-		
+
 		</div>
 	</body>
 
 </html>
 <script type="text/javascript">
-			$('.dianji').click(function(){
-				console.log('----------')
-				
-					$("#ECalendar_case3").ECalendar({
-						type: "time",
-						stamp: false,
-						skin: 5,
-						format: "yyyy年mm月dd日 hh时ii分",
-						callback: function(v, e) {
-							$(".callback span").html(v)
-						}
-					});
-					$("#ECalendar_case4").ECalendar({
-						type: "time",
-						stamp: false,
-						skin: 5,
-						format: "yyyy年mm月dd日 hh时ii分",
-						callback: function(v, e) {
-							$(".callback1 span").html(v)
-						}
-					});
-				
-				
-			})
-			
-		</script>
+	$('.dianji').click(function() {
+		console.log('----------')
+
+		$("#ECalendar_case6").ECalendar({
+			type: "time",
+			stamp: false,
+			skin: 5,
+			format: "yyyy.mm.dd.hh:ii",
+
+		});
+		$("#ECalendar_case5").ECalendar({
+			type: "time",
+			stamp: false,
+			skin: 5,
+			format: "yyyy.mm.dd.hh:ii",
+
+		});
+		$('.qingchu').click(function() {
+			console.log("0000000000123")
+			$('#ECalendar_case6').val("");
+			$('#ECalendar_case5').val("")
+		})
+
+	})
+//$('#ECalendar_case5').
+	$('.tianjia').click(function(){
+		
+		
+//		$.ajax({
+//			url:'/houtai',
+//			type:'post',
+//			data:{Jiaocai:'Jiaocai';Banben:'Banben';ce:'ce';mingcheng:'mingcheng';date:'date';date1:'date1'}
+//		})
+		
+	})
+	$('#checkbox6').change(function(){
+		$('.tianjia').click(function(){
+			console.log('我是checkbox6')
+		})
+
+
+	})
+	$('#checkbox5').change(function(){
+		$('.tianjia').click(function(){
+			console.log('我是checkbox5')
+		})
+
+
+	})
+	$('#checkbox4').change(function(){
+		$('.tianjia').click(function(){
+			console.log('我是checkbox4')
+		})
+
+
+	})
+	$('#checkbox3').change(function(){
+		$('.tianjia').click(function(){
+			console.log('我是checkbox3')
+		})
+
+
+	})
+	$('#checkbox2').change(function(){
+		$('.tianjia').click(function(){
+			console.log('我是checkbox2')
+		})
+
+
+	})
+	$('#checkbox1').change(function(){
+		$('.tianjia').click(function(){
+			console.log('我是checkbox1')
+		})
+
+
+	})
+$('.mouseleave').mouseleave(function(){
+	var startTime=$('#ECalendar_case6').val()
+	var endTime=$('#ECalendar_case5').val()
+	var start=startTime.replace(".", "").replace(".", "").replace(".", "").replace(":", ""); 
+	var end=endTime.replace(".", "").replace(".", "").replace(".", "").replace(":", ""); 
+		
+	if(start - end >0){
+			alert('结束时间必须晚于开始时间！！')
+		}	
+})
+</script>
