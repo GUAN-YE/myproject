@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+		<!-- <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script> -->
+        <!-- <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+        <!-- <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>   -->
+        <!-- <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  -->
+		
+		<meta charset="{CHARSET}">
+		<title>传参</title>
+	</head>
+	<body>
+		<div id="nam">
+			<input type="text" id="name1" name='name1' />
+		</div>
+		<div id="nam">
+			<input type="text" id="name2" value="" name='name2'/>
+		</div>
+	
+		<input type="button" id="but" value="登录" />
+	</body>
+</html>
+<script type="text/javascript">
+
+$('#but').click(function(){
+	var data={
+		name1:$('#name1').val(),
+		name2:$('#name2').val()
+	}
+	$.ajax({
+		type:'POST',
+		url:'/login',
+		data:data, 
+		success:function(data){
+			console.log(data)
+		}
+	});
+})
+	
+</script>
