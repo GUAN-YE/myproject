@@ -1,0 +1,20 @@
+<h1>213213123123123213123123</h1>
+<li>{{lb.age}}</li>
+<li>{{lb.name}}</li>
+<li>{{lb.sex}}</li>
+<li>{{lb.say}}</li>
+<li>{{erlist}}</li>
+
+
+
+
+
+{% for er,v in lb.items %}
+<li>{{er}}:{{v}}</li>
+
+{% endfor %}
+{% if lb %}
+<li>{{lb.name}}</li>
+{% else %}
+kkkk
+{% endif %}
