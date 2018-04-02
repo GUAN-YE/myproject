@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+	<title>机构介绍</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../static/js/plugins/queryCity/css/cityLayout.css">
+	<script>
+		if (localStorage.getItem("keySss")!="ok"){
+			window.location.href="http://localhost:8080"
+		}
+	</script>
+    
+    <script src="../static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../static/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    {% block css%}{% endblock %}
+</head>
+<body>
+<section class="headerwrap headerwrap2">
+    <header>
+		<div  class="header2 header">
+ 			
+                <div class="top">
+				<div class="wp">
+					<div class="fl">
+                        <p>联系方式：<b>3333333333</b></p>
+					</div>
+					<div class="personal">
+                            <dl class="user fr">
+                                <dd><label id="usernamesss" for=""></label><img class="down fr" src="../static/images/top_down.png"/></dd>
+                                <dt><img width="20" height="20" src="../static/images/default_big_14.png"/></dt>
+                            </dl>
+                            <div class="userdetail">
+                            	<dl>
+	                                <dt><img width="80" height="80" src="../static/images/default_big_14.png"/></dt>
+	                                <dd>
+	                                    <h2>django</h2>
+	                                    <p><label id="usernamess" for=""></label></p>
+	                                </dd>
+                                </dl>
+                                <div class="btn">
+	                                <a class="personcenter fl" id="myperson" >进入个人中心</a>
+	                                <a class="fr" id="myexit">退出</a>
+                                </div>
+                            </div>
+                        </div>
+                    
+					</div>
+				</div>
+            
+            
+			<div class="middle companyheader">
+				<div class="wp">
+					<img class="fl" style="width: 112px;height: 103px" src="../static/images/media/org/2016/11/imooc.png"/>
+					<div class="head fl">
+						<h1>
+							慕课网
+							<img src="../static/images/authentication.png"/>
+							<img src="../static/images/gold.png"/>
+						</h1>
+						<p class="fl">
+							<span class="fl" style="margin-top:8px;color:#848484;">推荐指数： </span>
+							<span class="precision company-credit" data-star-scope="5.0"></span>
+							<span class="key">5.0</span>
+						</p>
+					</div>
+					<div class="btn fr collectionbtn  notlogin 
+						"data-favid="22" data-fav-type="1">
+						收藏
+					</div>
+
+				</div>
+			</div>
+		</div>
+    </header>
+</section>
+<section>
+	<div class="wp">
+		<ul  class="crumbs">
+            <li><a href="http://localhost:8080/main/">首页</a>></li>
+			<li><a href="http://localhost:8080/orgdetaildesc/">课程机构</a>></li>
+			<li>机构介绍</li>
+		</ul>
+	</div>
+</section>
+
+<section>
+	<div class="wp list personal_list comp">
+		<div class="left">
+			<ul>
+				<li class=""><a href="http://localhost:8080/orgdetaildesc/">机构首页</a></li>
+                <li class=""><a href="http://localhost:8080/orgprodesc/">机构课程</a></li>
+                <li class="active2"><a href="http://localhost:8080/orgdescript/">机构介绍</a></li>
+                <li class=""><a href="http://localhost:8080/orgteadesc/">机构讲师</a></li>
+			</ul>
+		</div>
+    
+<div class="right companycenter layout" >
+		{% block content %}
+		{% endblock %}
+    </div>
+
+
+</section>
+<!--sidebar start-->
+<section>
+    <ul class="sidebar">
+        <li class="qq">
+            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=2023525077&site=qq&menu=yes"></a>
+        </li>
+        <li class="totop"></li>
+    </ul>
+</section>
+<!--sidebar end-->
+<!--header start-->
+</div>
+<!--弹出省省市-->
+
+<script src="../static/js/selectUi.js" type='text/javascript'></script>
+<script type="text/javascript" src="../static/js/plugins/laydate/laydate.js"></script>
+<script src="../static/js/plugins/layer/layer.js"></script>
+<script src="../static/js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+<script src="../static/js/deco-common.js"  type="text/javascript"></script>
+<script src="../static/js/unslider.js" type="text/javascript"></script>
+<script src="../static/js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
+<script src="../static/js/validateDialog.js"  type="text/javascript"></script>
+<script src="../static/js/deco-common.js"  type="text/javascript"></script>
+<script type="text/javascript" src="../static/js/plugins/jquery.raty.js"></script>
+
+<script>
+	var username = JSON.parse(localStorage.getItem("logMsg"));
+	console.log(username)
+	document.getElementById("usernamesss").innerHTML=username
+    document.getElementById("usernamess").innerHTML=username
+	$("#myexit").click(function(){
+				//清除缓存
+			localStorage.clear(); 
+
+			//清除session
+			// $.ajax({
+			// 	url: "http://localhost:8000/setSession/",
+			// 	success: function (data) {
+					
+			window.location.href = "http://localhost:8080";
+			// 	},
+			// });
+			
+		})
+</script>
+{% block script %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,226 @@
+{% extends "mainbase.html" %}
+{% load staticfiles %}
+{% block content %}
+    <div class="banner">
+			<div class="wp">
+				<div class="fl">
+					<div class="imgslide">
+						<ul class="imgs">
+                            
+                            <li>
+                                    <a href="###">
+                                    	<img width="1200" height="478" src="../static/images/57a801860001c34b12000460.jpg" />
+                                    </a>
+                                </li>
+                            
+                            <li>
+                                    <a href="###">
+                                    	<img width="1200" height="478" src="../static/images/57aa86a0000145c512000460.jpg" />
+                                    </a>
+                                </li>
+                            
+                            <li>
+                                    <a href="###">
+                                    	<img width="1200" height="478" src="../static/images/57a801860001c34b12000460_z4Vb8zl.jpg" />
+                                    </a>
+                                </li>
+                            
+                            <li>
+                                    <a href="###">
+                                    	<img width="1200" height="478" src="../static/images/57aa86a0000145c512000460_nMwvoQD.jpg" />
+                                    </a>
+                                </li>
+                            
+                            <li>
+                                    <a href="###">
+                                    	<img width="1200" height="478" src="../static/images/57aa86a0000145c512000460_GXIBATC.jpg" />
+                                    </a>
+                                </li>
+                            
+
+						</ul>
+					</div>
+					<div class="unslider-arrow prev"></div>
+					<div class="unslider-arrow next"></div>
+				</div>
+
+				</div>
+
+
+			</div>
+<!--banner end-->
+<!--feature start-->
+	<section>
+		<div class="wp">
+			<ul class="feature">
+				<li class="feature1">
+					<img class="pic" src="../static/images/feature1.png"/>
+					<p class="center">专业权威</p>
+				</li>
+				<li class="feature2">
+					<img class="pic" src="../static/images/feature2.png"/>
+					<p class="center">课程最新</p>
+				</li>
+				<li class="feature3">
+					<img class="pic" src="../static/images/feature3.png"/>
+					<p class="center">名师授课</p>
+				</li>
+				<li class="feature4">
+					<img class="pic" src="../static/images/feature4.png"/>
+					<p class="center">数据真实</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+<!--feature end-->
+<!--module1 start-->
+	<section>
+		<div class="module">
+			<div class="wp">
+				<h1>公开课程</h1>
+				<div class="module1 eachmod">
+					<div class="module1_1 left">
+						<img width="228" height="614" src="../static/images/module1_1.jpg"/>
+						<p class="fisrt_word">名师授课<br/>专业权威</p>
+						<a class="more" href="http://localhost:8080/courselist/">查看更多课程 ></a>
+					</div>
+					<div class="right group_list" id="myproject">
+                        
+                        
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="module greybg">
+			<div class="wp">
+				<h1>课程机构</h1>
+				<div class="module3 eachmod">
+					<div class="module3_1 left">
+						<img width="228" height="463" src="../static/images/module3_1.jpg"/>
+						<p class="fisrt_word">名校来袭<br/>权威认证</p>
+						<a class="more" href="http://localhost:8080/orgshow/">查看更多机构 ></a>
+					</div>
+					<div class="right">
+						<ul id="myorg"> 
+                            
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+{% block script %}
+<script src="../static/js/selectUi.js" type='text/javascript'></script>
+<script src="../static/js/deco-common.js" type='text/javascript'></script>
+<script type="text/javascript" src="../static/js/plugins/laydate/laydate.js"></script>
+<script src="../static/js/plugins/layer/layer.js"></script>
+<script src="../static/js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+<script src="../static/js/unslider.js" type="text/javascript"></script>
+<script src="../static/js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
+<script src="../static/js/deco-common.js"  type="text/javascript"></script>
+
+<script type="text/javascript" src="../static/js/index.js"></script>
+<script>
+    // var data = JSON.parse(localStorage.getItem("logMsg"));
+	// console.log(data)
+    // document.getElementById("usernamesss").innerHTML=data
+    // document.getElementById("usernamess").innerHTML=data
+	// console.log("4444444444444444444444444444444")
+    function loaddata(){
+		var url="http://localhost:8080/projectshowApi/";
+		console.log(url);
+		$.ajax({
+			url:url,
+			success:function(data){
+				mydata=data.data;
+				dataparse(mydata);
+				// bbb=(data.data).length/8;
+                // yeNumber=Math.ceil(bbb)
+                // addFenyehtml(yeNumber)
+			}
+		})
+	}
+    var no=2
+	function dataparse(mydata){
+        // $("#mysource").empty()
+		for(i=0;i<8;i++){
+            if(no<4){
+                no+=1
+            }
+            else{
+                no=5
+            }
+            var projectid=mydata[i]["projectid"];
+            var projectname=mydata[i]["projectname"];
+            var proteacher=mydata[i]["proteacher"];
+            var propicture=mydata[i]["propicture"];
+            var prodetail=mydata[i]["prodetail"];
+            imageName = "http://localhost:8080/static/myfile/" + propicture;
+            // console.log(imageName)
+            var ele='<div class="module1_1 box"><a href="###"><img width="233" height="190" src="'+ imageName +'"/></a><div class="des"> <a href="###" class="myprojectnames"><h2 title="django入门">'+ projectname +'</h2></a><span class="fl">难度：<i class="key">初级</i></span><span class="fr">学习人数：3</span></div><div class="bottom"><span class="fl" title="慕课网">慕课网</span><span class="star fr">0</span></div></div>'
+            // imageName=""
+            $("#myproject").append(ele);
+            console.log(projectid,projectname,proteacher,imageName)
+			
+		}
+		$(".myprojectnames").click(function(){
+			console.log("dddddddddddddddd");
+			data=$(this).text();
+            localStorage.setItem("data",JSON.stringify(data));
+		    window.location.href="http://localhost:8080/coursedetail/"
+		})
+	}
+	loaddata();
+    function orgshow(){
+		var url="http://localhost:8080/orgshowApi/";
+		console.log(url);
+		$.ajax({
+			url:url,
+			success:function(data){
+				// console.log(data)
+				mydata=data.data;
+				orgdataparse(mydata);
+				// bbb=(data.data).length/8;
+                // yeNumber=Math.ceil(bbb)
+                // addFenyehtml(yeNumber)
+			}
+		})
+	}
+	var no=1;
+	function orgdataparse(mydata){
+        // $("#mysource").empty()
+		for(i=0;i<15;i++){
+			if(no%5==0){
+				zz="five";
+				no+=1;
+			}
+			else{
+				zz="";
+				no+=1;
+			}
+            var orgid=mydata[i]["orgid"];
+            var orgname=mydata[i]["orgname"];
+            var orgteacher=mydata[i]["orgteacher"];
+            var orgpicture=mydata[i]["orgpicture"];
+            var orgdetail=mydata[i]["orgdetail"];
+            imageName = "http://localhost:8080/static/myfile/" + orgpicture;
+            console.log(orgpicture)
+            var ele='<li class='+ zz +' ><a href="###"><div class="company"><img width="184" height="100" src="'+ imageName +'"/><div class="score"><div class="circle"><h2>全国知名</h2></div></div></div><p class="myorgs" ><span class="key" title="慕课网">'+ orgname +'</span></p></a></li>'
+            // imageName=""
+            $("#myorg").append(ele);
+            console.log(orgid,orgname,orgteacher,imageName)	
+		}
+		$(".myorgs").click(function(){
+			console.log("dddddddddddddddd");
+			data=$(this).text();
+			console.log(data)
+            localStorage.setItem("orgname",JSON.stringify(data));
+		    window.location.href="http://localhost:8080/orgdetaildesc/"
+		})
+	}
+	orgshow();
+</script>
+{% endblock %}

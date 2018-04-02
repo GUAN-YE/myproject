@@ -1,0 +1,77 @@
+{% extends "orgbase.html" %}
+{% load staticfiles %}
+{% block content %}    
+<div class="right companycenter layout" >
+		<div class="head">
+			<h1>机构课程</h1>
+		</div>
+		<div class="brief group_list" id="mysource">
+            
+                
+		</div>
+			<div class="pageturn">
+                <ul class="pagelist">
+                    <li class="active"><a href="?page=1">1</a></li>
+                </ul>
+            </div>
+	</div>
+
+
+</section>
+<!--sidebar start-->
+{% endblock %}
+{% block script %}
+<script src="../static/js/selectUi.js" type='text/javascript'></script>
+<script type="text/javascript" src="../static/js/plugins/laydate/laydate.js"></script>
+<script src="../static/js/plugins/layer/layer.js"></script>
+<script src="../static/js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="../static/js/plugins/jquery.raty.js"></script>
+<script type="text/javascript">
+ var orgname = JSON.parse(localStorage.getItem("orgname"));
+	console.log(orgname)
+    function localdata(){
+        var objdata=orgname;
+        var url="http://localhost:8080/orgprodescApi/";
+        console.log(objdata)
+				ajaxFn(url, objdata, function(data) {
+					console.log(data)
+					data=$.parseJSON(data)//将字符串转成JSON数据
+					// // // console.log(typeof data)
+					mydata=data.data;
+                    // console.log(mydata)
+					dataParse(mydata);
+				})
+
+    }
+	function dataParse(mydata){
+		for(i=0;i<1;i++){          
+			projectname=mydata[i]["projectname"];
+			propicture=mydata[i]["propicture"];
+			prodetail=mydata[i]["prodetail"];
+			proteacher=mydata[i]["proteacher"];
+			orgname=mydata[i]["orgname"];
+			orgpicture=mydata[i]["orgpicture"];
+			imgname = "http://localhost:8080/static/myfile/"+propicture;
+            console.log(projectname,orgname,prodetail,imgname)
+			// orgimgName = "http://localhost:8080/static/myfile/"+orgpicture;
+			ele='<div class="module1_5 box"><a class="comp-img-box" href="course-detail.html"><img width="214" height="195" src="'+ imgname +'"/></a><div class="des"><a href="http://localhost:8080/coursedetail/"><h2>'+ projectname +'</h2></a><span class="fl">课时：<i class="key">0</i></span><span class="fr">学习人数：3</span></div><div class="bottom"><span class="fl">慕课网</span><span class="star fr  notlogin" data-favid="13" data-fav-type="4">0 </span></div></div>';
+			$("#mysource").append(ele)
+			}
+		}
+    function ajaxFn(urlString, postdata, fn) {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					result = xmlhttp.responseText;
+					console.log(result)
+					fn(result);
+				}
+			}
+			xmlhttp.open("POST", urlString, true);
+			xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+			xmlhttp.send("data=" + postdata);
+		}
+	localdata()
+</script>
+{% endblock %}

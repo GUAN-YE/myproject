@@ -1,0 +1,181 @@
+{% extends "mainbase.html" %}
+{% load staticfiles %}
+{% block content %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="index.html">首页</a>></li>
+                <li><a href="teachers-list.html">授课讲师</a>></li>
+                <li>讲师详情</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
+	<div class="wp butler-detail-box butler-diaryd-box clearfix">
+        <div class="fl list">
+            <div class="butler_detail_list clearfix" id="myteadetail">
+                
+            </div>
+            <div class="butler_detail_cont clearfix">
+                <div class="left layout">
+				<div class="head">
+					<ul class="tab_header">
+						<li class="active"><a href="/diary/hk_detail/10/">全部课程</a> </li>
+					</ul>
+				</div>
+                    <div class="companycenter">
+                        <div class="group_list brief" id="myprosource">
+                            
+                            
+                            
+
+                        </div>
+                    </div> 
+            </div>
+            </div>
+        </div>
+        <div class="fr list">
+             <div class="butler_detail_list">
+               
+            </div>
+            <div class="butler_detail_cont">
+                <div class="butler_list_box">
+                    <div class="right layout">
+                        <div class="head">讲师排行榜</div>
+                        <div id="myteatuijian"></div>
+                        
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>
+{% endblock %}
+{% block script %}
+<script src="../static/js/selectUi.js" type='text/javascript'></script>
+<script src="../static/js/deco-common.js" type='text/javascript'></script>
+<script type="text/javascript" src="../static/js/plugins/laydate/laydate.js"></script>
+<script src="../static/js/plugins/layer/layer.js"></script>
+<script src="../static/js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+<script src="../static/js/unslider.js" type="text/javascript"></script>
+<script src="../static/js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
+<script src="../static/js/deco-common.js"  type="text/javascript"></script>
+<script>
+    var teachername = JSON.parse(localStorage.getItem("teachername"));
+    console.log("我拿到讲师名称了.......")
+	console.log(teachername)
+    function localdata(){
+        var objdata=teachername;
+        var url="http://localhost:8080/teadetailApi/";
+        console.log(objdata)
+				ajaxFn(url, objdata, function(data) {
+					console.log(data)
+					data=$.parseJSON(data)//将字符串转成JSON数据
+					// // // console.log(typeof data)
+					mydata=data.data;
+                    // console.log(mydata)
+					dataParse(mydata);
+				})
+
+    }
+	function dataParse(mydata){
+		for(i=0;i<1;i++){          
+			var teacherid=mydata[i]["teacherid"];
+            var teachername=mydata[i]["teachername"];
+            var teachertype=mydata[i]["teachertype"];
+            var teacherdetail=mydata[i]["teacherdetail"];
+            var teacherimg=mydata[i]["teacherimg"];
+			var teacherage=mydata[i]["teacherage"];
+            var orgname=mydata[i]["orgname"];
+            imageName = "http://localhost:8080/static/myfile/" + teacherimg;
+            console.log(imageName,teacherage,orgname,teacherdetail,teachertype,teachername)
+			ele='<div class="brief"><dl class="des"> <dt><div class="picpic"><img width="100" height="100" src="'+ imageName +'"/></div><div class="btn"><span class="fl btn1 collectionbtn" id="jsLeftBtn">收藏</span></div> </dt><dd><a href="###"><h1>'+ teachername +'<span class="key picbig">'+ teachertype +'</span></h1></a><ul class="cont"><li>工作年限：<span>5年</span></li><li>就职公司：<span>'+ orgname +'</span></li><li>工作职位：<span>'+ teachertype +'&nbsp;</span></li><li>教学特点：<span>xxx</span></li></ul></dd></dl></div>';
+			$("#myteadetail").append(ele)
+			}
+		}
+    function ajaxFn(urlString, postdata, fn) {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					result = xmlhttp.responseText;
+					console.log(result)
+					fn(result);
+				}
+			}
+			xmlhttp.open("POST", urlString, true);
+			xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+			xmlhttp.send("data=" + postdata);
+		}
+    localdata()
+    function projectdata(){
+        var objdata=teachername;
+        var url="http://localhost:8080/teaproApi/";
+        console.log(objdata)
+				ajaxFn(url, objdata, function(data) {
+					console.log(data)
+					data=$.parseJSON(data)//将字符串转成JSON数据
+					// // // console.log(typeof data)
+					mydata=data.data;
+                    // console.log(mydata)
+					prodataParse(mydata);
+				})
+
+    }
+	function prodataParse(mydata){
+		for(i=0;i<mydata.length;i++){          
+			var projectid=mydata[i]["projectid"];
+            var projectname=mydata[i]["projectname"];
+            var proteacher=mydata[i]["proteacher"];
+            var propicture=mydata[i]["propicture"];
+            var prodetail=mydata[i]["prodetail"];
+            var orgname=mydata[i]["orgname"];
+            proimageName = "http://localhost:8080/static/myfile/" + propicture;
+            console.log(projectname,proteacher)
+			eles='<div class="module1_5 box"><a href="course-detail.html"><img width="214" height="190" class="scrollLoading" src="'+ proimageName +'"/></a><div class="des"><a class="mycccc" href="###"><h2 class="myprojectnames">'+ projectname +'</h2></a><span class="fl">时长：<i class="key">0</i></span><span class="fr">学习人数：13</span></div><div class="bottom"><span class="fl">'+ orgname +'</span><span class="star fr  notlogin" data-favid="15">0</span></div></div>';
+			$("#myprosource").append(eles)
+			}
+            $(".mycccc").click(function(){
+                data=$(this).text();
+                localStorage.setItem("data",JSON.stringify(data));
+                window.location.href="http://localhost:8080/coursedetail/"
+           })
+        }
+        
+        projectdata();
+        
+
+    function tuijiandata(){
+        var url="http://localhost:8080/teacherlistApi/";
+        console.log(url);
+        $.ajax({
+            url:url,
+            success:function(data){
+                mydata=data.data;
+                tuijiandataparse(mydata);
+            }
+        })
+	}
+	function tuijiandataparse(mydata){
+		for(i=0;i<3;i++){
+            var teacherid=mydata[i]["teacherid"];
+            var teachername=mydata[i]["teachername"];
+            var teachertype=mydata[i]["teachertype"];
+            var teacherdetail=mydata[i]["teacherdetail"];
+            var teacherimg=mydata[i]["teacherimg"];
+			var teacherage=mydata[i]["teacherage"];
+            var orgname=mydata[i]["orgname"];
+            imageName = "http://localhost:8080/static/myfile/" + teacherimg;
+            var ele='<dl class="des"><span class="num fl">1</span><a href="###"><dt><img width="50" height="50" class="scrollLoading" src="'+ imageName +'"/></dt></a><dd><a href="/org/teacher/detail/1/"><h1 title="bobby">'+ teachername +'</h1></a><p>工作年限：<span>5年</span></p></dd></dl>'
+            $("#myteatuijian").append(ele);
+			
+            console.log(imageName,teacherage,orgname,teacherdetail,teachertype,teachername)
+			
+        }
+    }
+    tuijiandata()
+</script>
+{% endblock %}

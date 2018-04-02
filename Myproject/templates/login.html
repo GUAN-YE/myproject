@@ -1,0 +1,111 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>慕学在线网登录</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="bg" id="dialogBg"></div>
+<header>
+    <div class="c-box fff-box">
+        <div class="wp header-box">
+            <p class="fl hd-tips">慕学在线网，在线学习平台！</p>
+            <ul class="fr hd-bar">
+                <li>服务电话：<span>33333333</span></li>
+                <li class="active"><a href="http://localhost:8080">[登录]</a></li>
+                <li><a href="http://localhost:8080/register/">[注册]</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="c-box bg-box">
+        <div class="login-box clearfix">
+            <div class="hd-login clearfix">
+                <a class="index-logo" href="index.html"></a>
+                <h1>用户登录</h1>
+                
+            </div>
+            <div class="fl slide">
+                <div class="imgslide">
+                    <ul class="imgs">
+                    	<li><a href=""><img width="483" height="472" src="../static/images/mysql.jpg" /></a></li>
+                        <li><a href=""><img width="483" height="472" src="../static/images/mysql.jpg" /></a></li>
+                        <li><a href=""><img width="483" height="472" src="../static/images/mysql.jpg" /></a></li>
+                            
+                    </ul>
+                </div>
+                <div class="unslider-arrow prev"></div>
+                <div class="unslider-arrow next"></div>
+            </div>
+            <div class="fl form-box">
+                <h2>帐号登录</h2>
+                <form action="http://localhost:8080/loginApi/" id="loginForm" method="post" autocomplete="off">
+                    <input type='hidden' name='csrfmiddlewaretoken' value='mymQDzHWl2REXIfPMg2mJaLqDfaS1sD5' />
+                    <div class="form-group marb20 ">
+                        <label>用&nbsp;户&nbsp;名</label>
+                        <input name="username" id="username" type="text" placeholder="手机号/邮箱" />
+                    </div>
+                    <div class="form-group marb8 ">
+                        <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                        <input name="pwd" id="password_l" type="password" placeholder="请输入您的密码" />
+                    </div>
+                    <div class="error btns login-form-tips" id="jsLoginTips"></div>
+                     <div class="auto-box marb38">
+
+                        <a class="fr" href="http://localhost:8080/forgetpwd/">忘记密码？</a>
+                     </div>
+                     <input class="btn btn-green" id="jsLoginBtn" type="submit" value="立即登录 > " />
+                <input type='hidden' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                </form>
+                <p class="form-p">没有慕学在线网帐号？<a href="http://localhost:8080/register/">[立即注册]</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="../static/js/jquery.min.js" type="text/javascript"></script>
+<script src="../static/js/unslider.js" type="text/javascript"></script>
+<script src="../static/js/login.js"  type="text/javascript"></script>
+<script src="../static/js/jquery.form.min.js"  type="text/javascript"></script>
+<script src="../static/js/plugins/layer/layer.js"  type="text/javascript"></script>
+</body>
+<script>
+    
+    $('#loginForm').on('submit', function(e) {
+			var aa="";
+			e.preventDefault(); 
+			$(this).ajaxSubmit({
+				success: function (result) {
+					aa=result.status;
+					console.log(aa);
+					if(aa != "ok"){
+						layer.msg("账号或密码输入错误请重新输入!");
+						console.log("66666666666666666666666666")
+						location.reload()
+					}
+					else{
+						layer.msg("恭喜你登录成功！")
+						console.log("3333333333333333333333333")
+						
+						var user=document.getElementById("username").value;
+						console.log(user)
+						localStorage.setItem("logMsg" ,JSON.stringify(user));
+						console.log(JSON.stringify(user))
+					    localStorage.setItem("keySss" , "ok")
+						setTimeout(function(){
+						    window.location.href="http://localhost:8080/main/";
+					    },300)
+						
+					}
+				}
+			})
+		});
+</script>
+</html>

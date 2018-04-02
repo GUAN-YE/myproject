@@ -1,0 +1,223 @@
+{% extends "mainbase.html" %}
+{% load staticfiles %}
+{% block content %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="index.html">首页</a>></li>
+                <li>课程机构</li>
+            </ul>
+        </div>
+    </section>
+
+
+<section>
+	<div class="wp butler_list_box list">
+	<div class='left'>
+		<div class="listoptions">
+			<ul>
+				<li>
+					<h2>机构类别</h2>
+					<div class="cont">
+                        <a href="?city="><span class="active2">全部</span></a>
+
+                            <a href="?ct=pxjg&city="><span class="">培训机构</span></a>
+
+                            <a href="?ct=gx&city="><span class="">高校</span></a>
+
+                            <a href="?ct=gr&city="><span class="">个人</span></a>
+
+					</div>
+				</li>
+				<li>
+					<h2>所在地区</h2>
+					<div class="more">更多</div>
+					<div class="cont">
+                        <a href="?ct="><span class="active2">全部</span></a>
+                            
+                                <a href="?city=1&ct="><span class="">北京市</span></a>
+                            
+                                <a href="?city=2&ct="><span class="">上海市</span></a>
+                            
+                                <a href="?city=3&ct="><span class="">广州市</span></a>
+                            
+                                <a href="?city=4&ct="><span class="">深圳市</span></a>
+                            
+                                <a href="?city=5&ct="><span class="">天津市</span></a>
+                            
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="all">共<span class="key"><label id="mycount"></label></span>家</div>
+		<div class="butler_list company list">
+		<div class="layout">
+			<div class="head">
+				<ul class="tab_header">
+					<li class="active"><a href="?ct=&city=">全部</a> </li>
+					<li class=""><a href="?sort=students&ct=&city=">学习人数 &#8595;</a></li>
+					<li class=""><a href="?sort=courses&ct=&city=">课程数 &#8595;</a></li>
+				</ul>
+			</div>
+            <div id="myorg" ></div>
+            
+            
+               
+            
+		</div>
+		 <div class="pageturn" id="mypage">
+            
+        </div>
+		</div>
+	</div>
+	<div class="right companyright">
+			
+		</div>
+
+		<div class="right companyrank layout">
+			<div class="head">授课机构排名</div>
+
+            <div id="mymooc" ></div>
+                
+
+		</div>
+        </div>
+</section>
+{% endblock %}
+{% block script %}
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="../static/js/selectUi.js" type='text/javascript'></script>
+<script src="../static/js/deco-common.js" type='text/javascript'></script>
+<script type="text/javascript" src="../static/js/plugins/laydate/laydate.js"></script>
+<script src="../static/js/plugins/layer/layer.js"></script>
+<script src="../static/js/plugins/queryCity/js/public.js" type="text/javascript"></script>
+<script src="../static/js/unslider.js" type="text/javascript"></script>
+<script src="../static/js/plugins/jquery.scrollLoading.js"  type="text/javascript"></script>
+<script src="../static/js/deco-common.js"  type="text/javascript"></script>
+
+<script src="../static/js/jquery.twbsPagination.min.js"></script>
+<script>
+    //数据分页
+    var count=""
+    var thispage = 1
+    var commName = ""
+    var fenye = $('#mypage')
+    var defaultOptions = ""
+	function addFenyehtml(yeNumber){
+        console.log("老子要分页了............");
+        if (defaultOptions!=""){
+            var currentPage=fenye.twbsPagination('getCurrentPage');
+            if(currentPage > yeNumber){
+                currentPage=1;
+            }
+            var currentOptioins={
+                totalPages:yeNumber,
+                first:"首页",
+                last:"尾页",
+                prev:"上一页",
+                next:"下一页",
+                startPage:currentPage,
+                visiblePages:yeNumber>4?4:yeNumber,
+                version:'1:1',
+                initiateStartPageClick:false,
+                onPageClick:function(event,page){
+                    console.log("page",page)
+                    thispage=page;
+                    orgshow(page);
+                }
+            }
+            fenye.twbsPagination('destroy');
+            fenye.twbsPagination($.extend({},defaultOptions,currentOptioins));
+            defaultOptions=currentOptioins;
+        }
+        else{
+            var page=1;
+            defaultOptions={
+                totalPages:yeNumber,
+                first:"首页",
+                last:"尾页",
+                prev:"上一页",
+                next:"下一页",
+                startPage:1,
+                visiblePages:yeNumber>5?5:yeNumber,
+                version:'1.1',
+                initiateStartPageClick:false,
+                onPageClick:function(event,page){
+                    thispage=page
+                    orgshow();
+                }
+            }
+            fenye.twbsPagination(defaultOptions);
+        }
+    }
+    //课程展现方法
+    function orgshow(){
+		var url="http://localhost:8080/orgshowApi/";
+		console.log(url);
+		$.ajax({
+			url:url,
+			success:function(data){
+				// console.log(data)
+				mydata=data.data;
+                console.log(mydata.length)
+                count=mydata.length;
+                document.getElementById("mycount").innerHTML=count;
+				orgdataparse(mydata);
+                orgdataparse1(mydata);
+				bbb=mydata.length/5;
+                yeNumber=Math.ceil(bbb)
+                addFenyehtml(yeNumber)
+			}
+		})
+    }
+    //课程展现
+	function orgdataparse(mydata){
+        $("#myorg").empty()
+		for(i=0;i<mydata.length;i++){
+            if(i >= (thispage - 1) * 5 && i <= thispage * 5 - 1) {
+                var orgid=mydata[i]["orgid"];
+                var orgname=mydata[i]["orgname"];
+                var orgteacer=mydata[i]["orgteacer"];
+                var orgpicture=mydata[i]["orgpicture"];
+                var orgdetail=mydata[i]["orgdetail"];
+                var projectname=mydata[i]["projectname"];
+                var address=mydata[i]["address"];
+                imageName = "http://localhost:8080/static/myfile/" + orgpicture;
+                console.log(orgpicture)
+                var ele='<dl class="des difdes"><dt><a href="org-detail-homepage.html"><img width="200" height="120" class="scrollLoading" src="'+ imageName +'"/></a></dt><dd><div class="clearfix"><a class="myorgs" href="###"><h1>'+ orgname +'</h1><div class="pic fl"> <img src="../static/images/authentication.png"/><img src="../static/images/gold.png"/></div></a></div><ul class="cont"><li class="first"><p class="pic9">课程数：<span>1</span></p><p class="c7">学习人数：<span>1000</span></p></li><li class="c8" style="padding-left:18px;">'+ address +'</li> <li class="pic10" style="padding-left:18px;">经典课程：<a href="/diary/19/">'+ projectname +'</a></li></ul></dd><div class="buy start_groupbuy jsShowPerfect2" data-id="22"><br/>联系<br/>服务</div></dl>'
+                // imageName=""
+                $("#myorg").append(ele);
+                console.log(projectname,orgname,address,imageName)	
+            }
+            
+		}
+        $(".myorgs").click(function(){
+			console.log("dddddddddddddddd");
+			data=$(this).text();
+			console.log(data)
+            localStorage.setItem("orgname",JSON.stringify(data));
+		    window.location.href="http://localhost:8080/orgdetaildesc/"
+		})
+    }
+    //推荐课程展现
+    function orgdataparse1(mydata){
+        $("#mymooc").empty()
+		for(i=0;i<3;i++){
+            var orgname=mydata[i]["orgname"];         
+            var orgdetail=mydata[i]["orgdetail"];
+            var ele='<dl class="des"><dt class="num fl">1</dt><dd><a href="###" class="mymoocs"><h1>'+ orgname +'</h1></a><p>北京市</p></dd></dl>'
+            // imageName=""
+            $("#mymooc").append(ele);
+            console.log(orgname)	
+		}
+        $(".mymoocs").click(function(){
+			data=$(this).text();
+			console.log(data)
+            localStorage.setItem("orgname",JSON.stringify(data));
+		    window.location.href="http://localhost:8080/orgdetaildesc/"
+		})
+	}
+	orgshow();
+
+</script>
+{% endblock %}

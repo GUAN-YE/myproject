@@ -1,0 +1,107 @@
+{% extends "personbase.html" %}
+{% load staticfiles %}
+{% block rightcontent %}
+<div class="personal_des ">
+        <div class="head" style="border:1px solid #eaeaea;">
+            <h1>个人信息</h1>
+        </div>
+        <div class="inforcon">
+            <form  id="jsEditUserForm" action="http://localhost:8080/updateperson/" method="post">
+                <ul class="right">
+                    <li>昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：
+                        <input type="text" name="nick_name" readonly="readonly" id="nick_name" maxlength="10">
+                        <i class="error-tips"></i>
+                    </li>
+                    <li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
+                            <input type="text"  id="birth_day" name="birday"   />
+                            <i class="error-tips"></i>
+                        </li>
+                    <li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：&nbsp;&nbsp;
+                            <select name="status" class="form-control" style="width:50px" id="myStatus">
+                                    <option >男</option>
+                                    <option>女</option>
+                                </select>
+                        </li>
+                    <li class="p_infor_city">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：
+                        <input type="text" name="address" id="address"  maxlength="10">
+                        <i class="error-tips"></i>
+                    </li>
+                    <li>手&nbsp;&nbsp;机&nbsp;&nbsp;号：
+                        <input type="text" name="mobile" id="mymobile" value="" maxlength="10">
+                    </li>
+                
+                    <li class="button heibtn">
+                        <input type="submit" id="jsEditUserBtn" value="保存">
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+<script src="../static/js/jquery.form.min.js"></script>
+<script>
+    var data = JSON.parse(localStorage.getItem("logMsg"));
+	console.log(data)
+    document.getElementById("nick_name").value=data;//通过ID给文本框赋值
+    function localdata(){
+        var objdata=data;
+        var url="http://localhost:8080/personindexApi/";
+        console.log(objdata)
+				ajaxFn(url, objdata, function(data) {
+					// console.log(data)
+					data=$.parseJSON(data)//将字符串转成JSON数据
+					// console.log(typeof data)
+					mydata=data.data;
+                    // console.log(mydata)
+					dataParse(mydata);
+				})
+
+    }
+    var birthday="";
+    var telnumber="";
+    var useradress="";
+	function dataParse(mydata){
+		for(i=0;i<mydata.length;i++){          
+                birthday=mydata[i]["birthday"];
+                password=mydata[i]["password"];
+                telnumber=mydata[i]["telnumber"];
+                useradress=mydata[i]["useradress"];
+                username=mydata[i]["username"];
+                usersex=mydata[i]["usersex"];
+            console.log(useradress,telnumber)
+			}
+			
+		}
+    if(birthday=""){
+        document.getElementById("birth_day").value="请输入你的生日";//通过ID给文本框赋值
+    }
+    else{
+        document.getElementById("birth_day").value=birthday;//通过ID给文本框赋值
+    }
+    
+    document.getElementById("address").value='+ useradress +';//通过ID给文本框赋值
+    document.getElementById("mymobile").value=telnumber;//通过ID给文本框赋值
+    function ajaxFn(urlString, postdata, fn) {
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					result = xmlhttp.responseText;
+					console.log(result)
+					fn(result);
+				}
+			}
+			xmlhttp.open("POST", urlString, true);
+			xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+			xmlhttp.send("data=" + postdata);
+		}
+	localdata()
+    $("#jsEditUserForm").on('submit',function(e){
+        e.preventDefault()
+        $(this).ajaxSubmit(function(result){
+            console.log(result)
+        })
+        console.log(result);
+    })
+</script>
+{% endblock %}
